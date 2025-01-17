@@ -1,0 +1,38 @@
+<div>
+  <h2>{{isEditMode ? 'Edit' : 'Create'}} Tournament</h2>
+
+  <form [formGroup]="tournamentForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name</label>
+      <input
+        type="text"
+        id="name"
+        formControlName="name"
+      >
+      <div *ngIf="tournamentForm.get('name')?.errors?.['required']">
+        Name is required
+      </div>
+    </div>
+
+    <div>
+      <label for="status">Status</label>
+      <select
+        id="status"
+        formControlName="status"
+      >
+        <option value="">Select status</option>
+        <option *ngFor="let status of TournamentStatus | keyvalue" [value]="status.value">
+          {{status.value}}
+        </option>
+      </select>
+      <div *ngIf="tournamentForm.get('status')?.errors?.['required']">
+        Status is required
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="tournamentForm.invalid">
+      {{isEditMode ? 'Update' : 'Create'}}
+    </button>
+    <button type="button" routerLink="/">Cancel</button>
+  </form>
+</div>

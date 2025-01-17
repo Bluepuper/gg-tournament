@@ -1,0 +1,39 @@
+<div>
+  <h2>Tournaments</h2>
+
+  <div>
+    <label for="statusFilter">Filter by Status:</label>
+    <select
+      id="statusFilter"
+      [(ngModel)]="statusFilter"
+      (change)="onFilterChange()">
+      <option [ngValue]="null">All</option>
+      <option *ngFor="let status of TournamentStatus | keyvalue" [value]="status.value">
+        {{status.value}}
+      </option>
+    </select>
+  </div>
+
+  <a routerLink="/tournament/create">Create New Tournament</a>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tournament of tournaments">
+        <td>{{tournament.name}}</td>
+        <td>{{tournament.status}}</td>
+        <td>
+          <button (click)="editTournament(tournament._id)">
+            Edit
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
