@@ -6,4 +6,4 @@
 
 ## Frontend
 
-- `cd backend && npm install && ng serve`
+- `cd frontend && npm install && ng serve`
